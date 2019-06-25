@@ -12,14 +12,16 @@ texts=yesterdayfile.readlines()
 for friend in friendList:
     flag=False
     for text in texts:
-        if(text.split("\t").__len__()>1):
+        # if(text.split("\t").__len__()>1):
+            text = text.replace("\n", "")
             # print(text.split("\t")[0]+"\t"+friend['UserName'])
-            if(text.split("\t")[0]==friend['UserName']):
+            if(str(text.split("\t")[0])==str(friend['AttrStatus'])):
                 flag=True
-                print(friend['UserName']+text.split("\t")[0])
-                pass
+                print(str(friend['AttrStatus'])+str(text.split("\t")[0]))
+                break
     if(not flag):
-        todayfile.writelines(friend['UserName']+"\t"+friend['RemarkName']+"\n")
-        print("%s , %s" % (friend['UserName'],friend['RemarkName'] or friend['NickName']))
+        todayfile.writelines(str(friend['AttrStatus'])+"\t"+friend['RemarkName']+"\n")
+    #     print("%s , %s" % (friend['UserName'],friend['RemarkName'] or friend['NickName']))
+    # print("%s , %s ,%s" % (friend['HeadImgUrl'],friend['AttrStatus'] , friend['NickName']))
 yesterdayfile.close()
 todayfile.close()
